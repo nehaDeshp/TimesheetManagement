@@ -2,7 +2,6 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
 var login = require('./server-functions/collections/login');
-
 const app=express();
 
 app.use(bodyParser.json()); // support json encoded bodies
@@ -13,14 +12,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-  });
-
-//session settings
-// app.use(session({
-//     secret: 'work hard',
-//     resave: true,
-//     saveUninitialized: false
-// }));
+  });       
 
 app.use(express.static(__dirname + '/src'));
 app.listen(3000,function(){
@@ -47,17 +39,19 @@ app.post('/signup', function(req,res){
 });
 
 /********************SIGN IN */
-app.get('/signin',function(req,res){
-    console.log("Called Server",req.body);
+app.get('/signin/:username',function(req,res){
+    console.log("Called Server",req.params);
     var params = {
-        "username":req.body.username,
-        "password":req.body.password
+        "username":req.params.username
     }
     var data;
-    UserLogin.findOne({username:params.username,password:params.password},function(err,user){
+    login.findOne({username:params.username},function(err,user){
         if(err) 
             throw err;
+        console.log(user);
+        console.log(res.json(user));
+        a = res.json(user);
+        console.log("***************************",a)
     });
-    console.log("In server",res);
 });
 
