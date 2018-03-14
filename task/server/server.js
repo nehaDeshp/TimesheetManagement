@@ -1,6 +1,16 @@
 var express = require('express');// Fast, unopinionated, minimalist web framework for node.
 var app = express();	// Initiate Express Application
 var bodyParser = require('body-parser');	// Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
+
+app.use(function(req, res, next) {
+
+    res.header("Access-Control-Allow-Origin", "*");
+
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    next();
+
+  });
 var mongoose = require('mongoose');	// Node Tool for MongoDB
 mongoose.connect('mongodb://localhost/NewTasks');	//connect to database
 
@@ -25,10 +35,10 @@ var NewTasks = mongoose.model('NewTasks', mongoose.Schema({	//create schema and 
 	currentstatus: String,
 	responsible: String,
 	assignedTo: String,
-	Newlinks:[{name:String,
-		Link:String}],
-	NewTasksattachments:[{name:String,
-		fileAttachment:String}],
+	NewlinksContacts:String,
+	NewlinksCompany:String,
+	NewlinksProjects:String,
+	NewTasksattachments:String,
 	taskStatus:String
 }));
 
@@ -45,7 +55,7 @@ app.use(express.static(__dirname + '/client'));	// Provide static directory for 
 }); */
 
 //Api to get all Tasks
-app.get('/api/tasks', function(req, res){
+app.get('/api/gettasks', function(req, res){
 	NewTasks.find(function(err, tasks){	//employees --> response from database ie. all employees
 		if(err)
 			res.send(err);
@@ -118,13 +128,14 @@ app.get('/api/tasks/assignedTo/:assignedTo', function(req, res){
 	});
 });
 //Api to create New Task
-app.post('/api/tasks', function(req, res){
-	console.log(req.body);
+app.post('/api/newtasks', function(req, res){
 	NewTasks.create(req.body, function(err, tasks){	
 		//req.body --> requsting the data from the body of the input data. Install body-parser
 		if(err)
-			res.send(err);
-		res.json(tasks);
+			return err;
+			//res.send(err);
+		//res.json(tasks);
+		
 	});
 });
 
@@ -140,7 +151,7 @@ app.delete('/api/tasks/:id', function(req, res){
 });
 
 //Api to update Task by id
-app.put('/api/tasks/:id', function(req, res){
+app.put('/api/edittasks/:id', function(req, res){
 	var query = {
 
 		title: req.body.title,	
@@ -150,8 +161,10 @@ app.put('/api/tasks/:id', function(req, res){
 		currentstatus: req.body.currentstatus,
 		responsible: req.body.responsible,
 		assignedTo:req.body.assignedTo,
-		Nlink:req.body.Nlink,
-		Nattachment:req.body.Nattachment,
+		NewlinksContacts:req.body.NewlinksContacts,
+		NewlinksCompany:req.body.NewlinksCompany,
+		NewlinksProjects:req.body.NewlinksProjects,
+		NewTasksattachments:req.body.NewTasksattachments,
 		taskStatus:req.body.taskStatus,
 	
 	};

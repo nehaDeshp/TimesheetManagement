@@ -1,0 +1,32 @@
+<form #myForm="ngForm" name="addTask">
+	Title:<input type="text" [(ngModel)]="title" name="title" placeholder={{title}}>
+	<br>
+	Duration:<input type="text" [(ngModel)]="Duration" name="Duration" placeholder={{Duration}}>
+	<br>
+	Deadline:<input type="text" [(ngModel)]="Deadline" name="Deadline" placeholder={{Deadline}}>
+	<br>
+	Status:<input type="text" [(ngModel)]="activityType" name="activityType" placeholder={{activityType}}>
+	<br>
+	Description:<input type="text" [(ngModel)]="description" name="description" placeholder={{description}}>
+	<br>
+	Activity Type:<input type="text" [(ngModel)]="pactivityType" name="pactivityType" placeholder={{pactivityType}}>
+	<br>
+	Current status:<input type="text" [(ngModel)]="currentstatus" name="currentstatus" placeholder={{currentstatus}}>
+	<br>
+	Responsible:<input type="text" [(ngModel)]="responsible" name="responsible" placeholder={{responsible}}>
+	<br>
+	Assigned To:<input type="text" [(ngModel)]="assignedTo" name="assignedTo" placeholder={{assignedTo}}>
+	<br>
+	Link To Contacts:<input type="text"[(ngModel)]="NewlinksContacts"name="NewlinksContacts" placeholder={{NewlinksContacts}}>
+	<br>
+	Link To Company:<input type="text"[(ngModel)]="NewlinksCompany"name="NewlinksCompany" placeholder={{NewlinksCompany}}>
+	<br>
+	Link To Project:<input type="text"[(ngModel)]="NewlinksProjects"name="NewlinksProjects" placeholder={{NewlinksProjects}}>
+	<br>
+	Attachments:<input type="text" [(ngModel)]="NewTasksattachments" name ="NewTasksattachments" placeholder={{NewTasksattachments}}>
+	<br>
+	Completion Status:<input type="text" [(ngModel)]="taskStatus" name="taskStatus" placeholder={{taskStatus}}>
+	<input type="button" class = "btn-primary" (click)="addTask()" value="Submit">
+	<input type="button" class = "btn-primary" (click)="editTask()" value="Edit">
+
+</form>

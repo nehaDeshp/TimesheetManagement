@@ -1,0 +1,50 @@
+<form #myForm="ngForm" name="displayTask">
+	<table>
+    <thead>
+      <tr>
+          <!-- <td><b> id</b> </td> -->
+        <td><b> title </b> </td>
+        <td> <b>Duration </b> </td>
+        <td><b>Deadline </b></td>
+        <td> <b>activityType</b> </td>
+        <td><b>description</b></td>
+        <td> <b>pactivityType</b></td>
+        <td> <b>currentstatus</b> </td>
+        <td> <b>responsible</b> </td>
+        <td> <b>assignedTo</b> </td>
+        <td> <b>NewlinksContacts</b></td>
+        <td> <b>NewlinksCompany</b></td>
+        <td> <b>NewlinksProjects</b> </td>
+        <td> <b>NewTasksattachments</b> </td>
+        <td> <b>taskStatus</b></td>
+      
+
+      </tr>
+    
+    </thead>
+    
+    <tbody>
+      <tr *ngFor = "let x of task">
+        <td><a routerLink='/api/newtasks/{{x._id}}' (click)="editTask(x)" >{{x.title}} </a> </td>
+        <!-- <td>{{x._id}} </td> -->
+        <td> {{x.Duration}} </td>
+        <td> {{x.Deadline}} </td>
+        <td> {{x.activityType}} </td>
+        <td> {{x.description}}</td>
+        <td> {{x.pactivityType}}</td>
+        <td> {{x.currentstatus}} </td>
+        <td> {{x.responsible}} </td>
+        <td> {{x.assignedTo}} </td>
+        <td> {{x.NewlinksContacts}}</td>
+        <td> {{x.NewlinksCompany}}</td>
+        <td> {{x.NewlinksProjects}} </td>
+        <td> {{x.NewTasksattachments}} </td>
+        <td> {{x.taskStatus}}</td>
+      
+        <!-- /<a href = {{ x.title }} (click)="addTask()" > -->
+      
+      </tr>
+    
+    </tbody>
+</table>
+</form>
