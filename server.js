@@ -19,8 +19,10 @@ app.listen(3000,function(){
     console.log("Server Listening on Port 3000")
 })
 
-/************************** SIGN UP API */
-app.post('/signup', function(req,res){
+/**
+ *          SIGN UP
+ * */
+var signup = app.post('/signup', function(req,res){
     console.log(req.body);
     var usr_inst = new login({
         "username":req.body.username,
@@ -38,7 +40,9 @@ app.post('/signup', function(req,res){
     })
 });
 
-/********************SIGN IN */
+/**
+ *              SIGN IN
+ */
 app.get('/signin/:username',function(req,res){
     console.log("Called Server",req.params);
     var params = {
@@ -48,10 +52,6 @@ app.get('/signin/:username',function(req,res){
     login.findOne({username:params.username},function(err,user){
         if(err) 
             throw err;
-        console.log(user);
-        console.log(res.json(user));
-        a = res.json(user);
-        console.log("***************************",a)
+        res.json(user);  
     });
 });
-

@@ -1,6 +1,7 @@
 import { Component, OnInit,Output } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { ApiServiceService } from 'D:/timesheet/src/app/services/api-service.service';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -13,12 +14,12 @@ export class SignupComponent implements OnInit {
   //Data-ngModel
   fname;lname;contact;email;username;password;
 
-  constructor(private api:ApiServiceService) { }
+  constructor(private api:ApiServiceService,
+              private router:Router) { }
   ngOnInit() {
   }
  
   signUp(){
-    console.log("inside");
     this.data = {
       "first_name":this.fname,
       "last_name":this.lname,
@@ -27,7 +28,8 @@ export class SignupComponent implements OnInit {
       "contact":this.contact,
       "email_id":this.email
     }
-    console.log(this.data);
     this.api.saveUser(this.data);
+
+    this.router.navigate(['/signup'])
   }
 }

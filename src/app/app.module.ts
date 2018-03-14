@@ -2,29 +2,31 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import { Http, RequestOptions } from '@angular/http';
 
-
+//Components
+import { SigninComponent } from './login/signin/signin.component';
+import { LoginComponent } from './login/login.component';
+import { ReportsComponent } from './reports/reports.component';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './login/signup/signup.component';
 
 //Services
 import { ApiServiceService } from './services/api-service.service'
+import { Constants } from './services/global';
 
 //Http
 import {HttpModule} from '@angular/http';
 
 //Charts
 import { ChartsModule } from 'ng2-charts';
-
-//Components
-import { SigninComponent } from './login/signin/signin.component';
-import { LoginComponent } from './login/login.component';
-import { ReportsComponent } from './reports/reports.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes = [
   {path: 'signup',component:SignupComponent},
   {path: 'signin',component:SigninComponent},
-  {path: 'reports',component:ReportsComponent}
+  {path: 'reports',component:ReportsComponent},
+  {path: 'profile/:username',component:DashboardComponent}
 ]
 
 @NgModule({
@@ -33,13 +35,16 @@ const routes = [
     SignupComponent,
     SigninComponent,
     LoginComponent,
-    ReportsComponent
+    ReportsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,FormsModule,RouterModule.forRoot(routes),HttpModule,
     ChartsModule
   ],
-  providers: [ApiServiceService],
+  providers: [
+    ApiServiceService,Constants
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

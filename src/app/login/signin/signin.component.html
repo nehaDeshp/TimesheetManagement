@@ -1,16 +1,27 @@
+<br>
 <div class="container">
+    <div class="row">
+        <div *ngIf="success!=''">
+            {{success}}
+        </div>
+
+    </div>
     <div class="row">
         <div class="col-md-4 col-xs-12 col sm-4"></div>
         <div class="col-md-4 col-xs-12 col sm-4">
-            <form #signin="ngForm" name='signin'>
-                <h2 class="form-signin-heading">Please sign in</h2>
+            <form #signin="ngForm" name='signin' action="">
                 <input type="email" class="form-control" placeholder="Email address" [(ngModel)]="username"
-                       name="username" required autofocus>
+                       name="username" required autofocus><br>
                 <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password"
-                       name="password" required>
+                       name="password" required><br>
                 <button class="btn btn-lg btn-primary btn-block" (click)="authenticate()" type="submit">Sign in</button>
             </form>
+            <a routerLink="/signup">New User? Register here</a>
         </div>
         <div class="col-md-4 col-xs-12 col sm-4"></div>
     </div>
-</div> 
+    <div *ngIf="val == null">
+            <p>{{errorMessage}}
+                </p>
+    </div>
+</div>
