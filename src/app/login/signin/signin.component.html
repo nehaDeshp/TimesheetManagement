@@ -1,26 +1,30 @@
 <br>
 <div class="container">
     <div class="row">
-        <div *ngIf="success!=''">
-            {{success}}
-        </div>
-
     </div>
     <div class="row">
+        
         <div class="col-md-4 col-xs-12 col sm-4"></div>
         <div class="col-md-4 col-xs-12 col sm-4">
-            <form #signin="ngForm" name='signin' action="">
-                <input type="email" class="form-control" placeholder="Email address" [(ngModel)]="username"
-                       name="username" required autofocus><br>
+            <form #signin="ngForm" name='signin'>
+                <input type="email" class="form-control" placeholder="Username" [(ngModel)]="username"
+                       name="username" required autofocus #uname="ngModel">
+                <div *ngIf="uname.touched && username=='' ">
+                    <p style="color:red;font-size: 12px">Please Enter Username</p>
+                </div><br>
                 <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password"
-                       name="password" required><br>
+                       name="password" required #pwd="ngModel">
+                <div *ngIf="pwd.touched && password=='' ">
+                    <p style="color:red;font-size: 12px">Please Enter Password</p>
+                </div><br>
                 <button class="btn btn-lg btn-primary btn-block" (click)="authenticate()" type="submit">Sign in</button>
             </form>
+            <br>
             <a routerLink="/signup">New User? Register here</a>
         </div>
         <div class="col-md-4 col-xs-12 col sm-4"></div>
     </div>
-    <div *ngIf="val == null">
+    <div *ngIf="notMatched">
             <p>{{errorMessage}}
                 </p>
     </div>

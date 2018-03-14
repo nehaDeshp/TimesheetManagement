@@ -1,33 +1,61 @@
 <br>
 <div class="container">
-    <form #signup="ngForm" name="a">
+    <form #signup="ngForm" name="SignUp">
         <div class = "row">
+
             <div class = "col-md-6 col-sm-12col xs-12">
                 <input class= "form-control" type="text" placeholder="First Name" name="fname" 
-                      [(ngModel)] = "fname">
+                      [(ngModel)] = "fname" #firstname="ngModel" required>
+                <div *ngIf="firstname.touched && fname == '' ">
+                    <p style="color:red;font-size: 12px">Please enter first Name</p>
+                </div><br>
             </div>
+
             <div class = "col-md-6 col-sm-12col xs-12">
-                <input class= "form-control" type="text" placeholder="Last Name" name="lname"
-                      [(ngModel)] = "lname">
+                <input class="form-control" type="text" placeholder="Last Name" name="lname"
+                      [(ngModel)] = "lastname" #lname="ngModel" required>
+                <div *ngIf="lname.touched && lastname =='' ">
+                    <p style="color:red;font-size: 12px">Please enter last Name</p>
+                </div><br>
             </div>
+
             <div class = "col-md-6 col-sm-12col xs-12">
                 <input class= "form-control" type="text" placeholder="User Name" name="username"
-                      [(ngModel)] = "username">
+                      [(ngModel)] = "username" #uname="ngModel" required>
+                <div *ngIf="uname.touched && username=='' ">
+                        <p style="color:red;font-size: 12px">Please Enter User Name</p>
+                </div><br>
             </div>
+            
             <div class = "col-md-6 col-sm-12col xs-12">
                 <input class= "form-control" type="text" placeholder="Email" name= "email"
-                       [(ngModel)] = "email">
+                       [(ngModel)] = "email" required #emailid="ngModel" required>
+                <div *ngIf="emailid.touched && email=='' ">
+                        <p style="color:red;font-size: 12px">Please Enter youe Email ID</p>
+                </div><br>
+            </div>
+            
+            <div class = "col-md-6 col-sm-12col xs-12">
+                <input class= "form-control" type="password" placeholder="Password" name="password"
+                      [(ngModel)] = "password" required #pass="ngModel" required>
+                <div *ngIf="pass.touched && password=='' ">
+                        <p style="color:red;font-size: 12px">Please Enter Password</p>
+                </div><br>
             </div>
             <div class = "col-md-6 col-sm-12col xs-12">
-                <input class= "form-control" type="text" placeholder="Password" name="password"
-                      [(ngModel)] = "password">
-            </div>
-            <div class = "col-md-6 col-sm-12col xs-12">
-                <input class= "form-control" type="text" placeholder="Contact" name="contact"
-                      [(ngModel)] = "contact" >
+                <input class= "form-control" type="text" placeholder="Contact No." name="contact"
+                      [(ngModel)] = "contact" required #cont="ngModel" required>
+                <div *ngIf="cont.touched && contact=='' ">
+                        <p style="color:red;font-size: 12px">Please Enter Contact Details</p>
+                </div><br>
             </div>
         </div>
         <br>
-        <input type="button" class = "btn-primary" (click)="signUp()" value="Submit">
+
+        <div *ngIf="signup.valid">
+            <input type="button" class = "btn-primary" (click)="signUp()" value="Submit">
+        </div>
+        <input type="button" class = "btn-primary" (click)="reset()" value="Reset">
+        
       </form>
 </div>

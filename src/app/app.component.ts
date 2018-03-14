@@ -1,7 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { SigninComponent } from './login/signin/signin.component';
-import {Constants} from './services/global';
-
 
  @Component({
   selector: 'app-root',
@@ -11,7 +9,7 @@ import {Constants} from './services/global';
 
 export class AppComponent {
   title = 'app';
-  constructor(private constants:Constants){
+  constructor(){
     
   }
 

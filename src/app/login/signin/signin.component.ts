@@ -11,32 +11,36 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit {
 
   username;password;params;errorMessage="";val:any;success="";session;
+
+  notMatched:boolean = false;
   constructor(private data:ApiServiceService,
               private router:Router){
 
   }
 
   ngOnInit() {
+    console.log(sessionStorage.getItem('id'));  
     this.errorMessage = "";
     this.success = this.data.success;
   }
 
   authenticate(){
 
-    console.log(sessionStorage);
+    console.log(sessionStorage.getItem('id'));
     this.errorMessage="Invalid User";
     this.params={
       "username":this.username
     };
     this.data.getUserData(this.params)
         .subscribe(data => {
-          console.log(data,"DATA");
           this.val=data;
-          console.log("VAL=",this.val);
-          if(this.val != null){
+          if(this.val != null && this.val.password == this.password){
             sessionStorage.setItem('id',this.val._id);
             sessionStorage.setItem('name',this.val.username);
             this.router.navigate(['/profile',sessionStorage.getItem('name')]);
+          }
+          else{
+            this.notMatched=true;
           }
     });
   }

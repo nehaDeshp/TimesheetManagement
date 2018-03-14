@@ -20,9 +20,11 @@ export class ApiServiceService {
   saveUser(data){
     console.log("Serve:",data)
     this.url = "http://localhost:3000/signup"
+    alert(this.url+""+data.json);
     this.http.post(this.url,data,this.options)
                .map(res => res.json)  
                .subscribe(res => console.log(res));
+    alert("Done")
     this.success = "User created sucessfully";
     }
   

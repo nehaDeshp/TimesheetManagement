@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
 
   data : any;
   //Data-ngModel
-  fname;lname;contact;email;username;password;
+  fname;lastname;contact;email;username;password;
 
   constructor(private api:ApiServiceService,
               private router:Router) { }
@@ -22,14 +22,24 @@ export class SignupComponent implements OnInit {
   signUp(){
     this.data = {
       "first_name":this.fname,
-      "last_name":this.lname,
+      "last_name":this.lastname,
       "username":this.username,
       "password":this.password,
       "contact":this.contact,
       "email_id":this.email
     }
     this.api.saveUser(this.data);
+    console.log("comp done")
+    
+    this.router.navigate([''])
+  }
 
-    this.router.navigate(['/signup'])
+  reset(){
+    this.fname="";
+    this.lastname="";
+    this.email="";
+    this.password="";
+    this.contact="";
+    this.username="";
   }
 }

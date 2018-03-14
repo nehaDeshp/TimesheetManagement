@@ -12,8 +12,7 @@ import { AppComponent } from './app.component';
 import { SignupComponent } from './login/signup/signup.component';
 
 //Services
-import { ApiServiceService } from './services/api-service.service'
-import { Constants } from './services/global';
+import { ApiServiceService } from './services/api-service.service';
 
 //Http
 import {HttpModule} from '@angular/http';
@@ -23,10 +22,11 @@ import { ChartsModule } from 'ng2-charts';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes = [
+  {path: '', component:SigninComponent},
   {path: 'signup',component:SignupComponent},
-  {path: 'signin',component:SigninComponent},
   {path: 'reports',component:ReportsComponent},
-  {path: 'profile/:username',component:DashboardComponent}
+  {path: 'profile/:username',component:DashboardComponent},
+  {path: 'login',component:LoginComponent}
 ]
 
 @NgModule({
@@ -43,7 +43,7 @@ const routes = [
     ChartsModule
   ],
   providers: [
-    ApiServiceService,Constants
+    ApiServiceService
   ],
   bootstrap: [AppComponent]
 })

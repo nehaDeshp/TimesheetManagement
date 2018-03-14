@@ -1,17 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Timesheet Management</a>
-    <ul class="nav signin">
-        <li class="nav-item">
-            <div *ngIf="constants.signin=='Sign In'">
-                <a class="nav-link active" routerLink="signin">{{constants.signin}}</a>
-            </div>
-            <div *ngIf="constants.signin=='Sign Out'">
-                <a class="nav-link active" routerLink="signin">{{constants.signin}}</a>
-            </div>
-        </li>
-    </ul>
 </nav>
-<div class="bgcolr container">
+<br>
+<div class="container bgcolr">
     <router-outlet></router-outlet>
 </div>
-
