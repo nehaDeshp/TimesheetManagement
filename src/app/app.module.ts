@@ -20,6 +20,7 @@ import {HttpModule} from '@angular/http';
 //Charts
 import { ChartsModule } from 'ng2-charts';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes = [
   {path: '', component:SigninComponent},
@@ -36,7 +37,8 @@ const routes = [
     SigninComponent,
     LoginComponent,
     ReportsComponent,
-    DashboardComponent
+    DashboardComponent,
+    TasksComponent
   ],
   imports: [
     BrowserModule,FormsModule,RouterModule.forRoot(routes),HttpModule,

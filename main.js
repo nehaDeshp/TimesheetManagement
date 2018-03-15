@@ -10,6 +10,7 @@ mongoose.connect("mongodb://127.0.0.1/TSManager");
 //Import models
 var login = require('./server-functions/collections/login');
 var calender = require('./server-functions/collections/events');
+var task = require('./server-functions/collections/tasks');
 
 //Use NPM Modules
 app.use(bodyParser.json()); // support json encoded bodies
@@ -37,8 +38,11 @@ login_routes(app);
 var event_routes = require('./server-functions/api/eventroutes');
 event_routes(app);
 
+var task_routes = require('./server-functions/api/taskroutes');
+task_routes(app);
 
 //Export required Modules
 module.exports = mongoose;
 module.exports = login;
 module.exports = calender;
+module.exports = task;
