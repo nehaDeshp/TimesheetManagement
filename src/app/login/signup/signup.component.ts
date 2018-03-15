@@ -1,7 +1,10 @@
+//Required Modules
 import { Component, OnInit,Output } from '@angular/core';
+import { Router, ActivatedRoute} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import { ApiServiceService } from 'D:/timesheet/src/app/services/api-service.service';
-import { Router} from '@angular/router';
+
+//Services
+import { AuthenticationService } from 'D:/timesheet/src/app/services/authentication.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +17,7 @@ export class SignupComponent implements OnInit {
   //Data-ngModel
   fname;lastname;contact;email;username;password;
 
-  constructor(private api:ApiServiceService,
+  constructor(private api:AuthenticationService,
               private router:Router) { }
   ngOnInit() {
   }

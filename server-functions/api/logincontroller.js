@@ -25,14 +25,11 @@ exports.userSignUp = function(req,res){
  * @param {*} res = 200 OK Status Posted to Database
  */
 exports.validateLogin = function(req,res){
-    console.log("Called Server",req.params);
-    var params = {
-        "username":req.params.username
-    }
-    var data;
-    UserLogin.findOne({username:params.username},function(err,user){
+    return UserLogin.findOne({username:req.body.username,password:req.body.password},function(err,user){
         if(err) 
             throw err;
+        console.log(user);
         res.json(user);  
+
     });
 };

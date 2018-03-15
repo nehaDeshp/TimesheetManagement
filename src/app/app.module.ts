@@ -10,25 +10,17 @@ import { LoginComponent } from './login/login.component';
 import { ReportsComponent } from './reports/reports.component';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './login/signup/signup.component';
-
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { TasksComponent } from './tasks/tasks.component';
 //Services
-import { ApiServiceService } from './services/api-service.service';
+import { AuthenticationService } from './services/authentication.service';
 
 //Http
 import {HttpModule} from '@angular/http';
 
 //Charts
 import { ChartsModule } from 'ng2-charts';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TasksComponent } from './tasks/tasks.component';
-
-const routes = [
-  {path: '', component:SigninComponent},
-  {path: 'signup',component:SignupComponent},
-  {path: 'reports',component:ReportsComponent},
-  {path: 'profile/:username',component:DashboardComponent},
-  {path: 'login',component:LoginComponent}
-]
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -41,11 +33,11 @@ const routes = [
     TasksComponent
   ],
   imports: [
-    BrowserModule,FormsModule,RouterModule.forRoot(routes),HttpModule,
-    ChartsModule
+    BrowserModule,FormsModule,HttpModule,
+    ChartsModule,routing
   ],
   providers: [
-    ApiServiceService
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

@@ -9,12 +9,12 @@ import 'rxjs/add/operator/toPromise';
 
 
 @Injectable()
-export class ApiServiceService {
+export class AuthenticationService {
 
   headers = new Headers({'Content-Type': 'application/json'}); 
   options = new RequestOptions({ headers: this.headers });
   constructor(private http:Http) { }
-  url;res:Observable<Response>;success="";
+  url;res:Observable<Response>;success="";params;
 
   //Sign Up
   saveUser(data){
@@ -29,9 +29,13 @@ export class ApiServiceService {
     }
   
   //Sign In
-  getUserData(params){
-    this.url="http://localhost:3000/signin/"+params.username;
-    return this.http.get(this.url)
-                .map(res => res.json());
+  getUserData(username,password){
+    this.params={
+        "username":username,
+        "password":password
+    };
+    this.url="http://localhost:3000/signin";
+    return this.http.post(this.url,this.params)
+             .map(res => res);
   }
 }
